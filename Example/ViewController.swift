@@ -104,10 +104,11 @@ class ViewController: UIViewController {
 
             GalleryConfigurationItem.pagingMode(.standard),
             GalleryConfigurationItem.presentationStyle(.displacement),
+            GalleryConfigurationItem.dismissStyle(.fade),
             GalleryConfigurationItem.hideDecorationViewsOnLaunch(false),
 
             GalleryConfigurationItem.swipeToDismissMode(.vertical),
-            GalleryConfigurationItem.toggleDecorationViewsBySingleTap(false),
+            GalleryConfigurationItem.toggleDecorationViewsBySingleTap(true),
             GalleryConfigurationItem.activityViewByLongPress(false),
 
             GalleryConfigurationItem.overlayColor(UIColor(white: 0.035, alpha: 1)),
@@ -127,12 +128,12 @@ class ViewController: UIViewController {
             GalleryConfigurationItem.colorPresentDuration(0.25),
             GalleryConfigurationItem.colorPresentDelay(0),
 
-            GalleryConfigurationItem.blurDismissDuration(0.1),
-            GalleryConfigurationItem.blurDismissDelay(0.4),
-            GalleryConfigurationItem.colorDismissDuration(0.45),
+            GalleryConfigurationItem.blurDismissDuration(0.25),
+            GalleryConfigurationItem.blurDismissDelay(0),
+            GalleryConfigurationItem.colorDismissDuration(0.25),
             GalleryConfigurationItem.colorDismissDelay(0),
 
-            GalleryConfigurationItem.itemFadeDuration(0.3),
+            GalleryConfigurationItem.itemFadeDuration(0.25),
             GalleryConfigurationItem.decorationViewsFadeDuration(0.15),
             GalleryConfigurationItem.rotationDuration(0.15),
 

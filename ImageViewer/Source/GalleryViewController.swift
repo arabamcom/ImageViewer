@@ -575,9 +575,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
                 if let strongSelf = self,
                     let itemController = strongSelf.viewControllers?.first as? ItemController {
 
+                    strongSelf.overlayView.dismiss()
                     itemController.dismissItem(alongsideAnimation: {
-
-                        strongSelf.overlayView.dismiss()
 
                         }, completion: { [weak self] in
 

@@ -34,6 +34,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
     //CONFIGURATION
     fileprivate var presentationStyle = GalleryPresentationStyle.displacement
+    fileprivate var dismissStyle = GalleryPresentationStyle.displacement
     fileprivate var doubleTapToZoomDuration = 0.15
     fileprivate var displacementDuration: TimeInterval = 0.55
     fileprivate var reverseDisplacementDuration: TimeInterval = 0.25
@@ -76,6 +77,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
             case .swipeToDismissThresholdVelocity(let velocity):    thresholdVelocity = velocity
             case .doubleTapToZoomDuration(let duration):            doubleTapToZoomDuration = duration
             case .presentationStyle(let style):                     presentationStyle = style
+            case .dismissStyle(let style):                          dismissStyle = style
             case .pagingMode(let mode):                             pagingMode = mode
             case .displacementDuration(let duration):               displacementDuration = duration
             case .reverseDisplacementDuration(let duration):        reverseDisplacementDuration = duration
@@ -527,7 +529,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
         alongsideAnimation()
 
-        switch presentationStyle {
+        switch dismissStyle {
 
         case .displacement:
 

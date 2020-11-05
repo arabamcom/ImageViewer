@@ -69,6 +69,9 @@ public enum GalleryConfigurationItem {
     /// Allows you to select between different types of initial gallery presentation style
     case presentationStyle(GalleryPresentationStyle)
 
+    /// Allows you to select between different types of initial gallery dismiss style
+    case dismissStyle(GalleryPresentationStyle)
+    
     ///Allows to set maximum magnification factor for the image
     case maximumZoomScale(CGFloat)
 
