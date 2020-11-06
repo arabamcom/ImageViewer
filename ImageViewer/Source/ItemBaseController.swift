@@ -456,7 +456,8 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
                 }
 
                 //position the image view to starting center
-                animatedImageView.frame = displacedView.convert(displacedView.bounds, to: self.view)
+                let convertedPoint = displacedView.convert(displacedView.boundsCenter, to: self.view)
+                animatedImageView.center = CGPoint(x: animatedImageView.bounds.size.width / 2, y: convertedPoint.y)
 
                 animatedImageView.clipsToBounds = true
                 self.view.addSubview(animatedImageView)
