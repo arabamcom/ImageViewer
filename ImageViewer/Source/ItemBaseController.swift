@@ -46,6 +46,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
     fileprivate var pagingMode: GalleryPagingMode = .standard
     fileprivate var thresholdVelocity: CGFloat = 500 // The speed of swipe needs to be at least this amount of pixels per second for the swipe to finish dismissal.
     fileprivate var displacementKeepOriginalInPlace = false
+    fileprivate var displacementViewWidthIsEqualToSuperView = false
     fileprivate var displacementInsetMargin: CGFloat = 50
     fileprivate var swipeToDismissMode = GallerySwipeToDismissMode.always
     fileprivate var toggleDecorationViewBySingleTap = true
@@ -74,23 +75,24 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
             switch item {
 
-            case .swipeToDismissThresholdVelocity(let velocity):    thresholdVelocity = velocity
-            case .doubleTapToZoomDuration(let duration):            doubleTapToZoomDuration = duration
-            case .presentationStyle(let style):                     presentationStyle = style
-            case .dismissStyle(let style):                          dismissStyle = style
-            case .pagingMode(let mode):                             pagingMode = mode
-            case .displacementDuration(let duration):               displacementDuration = duration
-            case .reverseDisplacementDuration(let duration):        reverseDisplacementDuration = duration
-            case .displacementTimingCurve(let curve):               displacementTimingCurve = curve
-            case .maximumZoomScale(let scale):                      maximumZoomScale = scale
-            case .itemFadeDuration(let duration):                   itemFadeDuration = duration
-            case .displacementKeepOriginalInPlace(let keep):        displacementKeepOriginalInPlace = keep
-            case .displacementInsetMargin(let margin):              displacementInsetMargin = margin
-            case .swipeToDismissMode(let mode):                     swipeToDismissMode = mode
-            case .toggleDecorationViewsBySingleTap(let enabled):    toggleDecorationViewBySingleTap = enabled
-            case .activityViewByLongPress(let enabled):             activityViewByLongPress = enabled
-            case .spinnerColor(let color):                          activityIndicatorView.color = color
-            case .spinnerStyle(let style):                          activityIndicatorView.style = style
+            case .swipeToDismissThresholdVelocity(let velocity):       thresholdVelocity = velocity
+            case .doubleTapToZoomDuration(let duration):               doubleTapToZoomDuration = duration
+            case .presentationStyle(let style):                        presentationStyle = style
+            case .dismissStyle(let style):                             dismissStyle = style
+            case .pagingMode(let mode):                                pagingMode = mode
+            case .displacementDuration(let duration):                  displacementDuration = duration
+            case .reverseDisplacementDuration(let duration):           reverseDisplacementDuration = duration
+            case .displacementTimingCurve(let curve):                  displacementTimingCurve = curve
+            case .maximumZoomScale(let scale):                         maximumZoomScale = scale
+            case .itemFadeDuration(let duration):                      itemFadeDuration = duration
+            case .displacementKeepOriginalInPlace(let keep):           displacementKeepOriginalInPlace = keep
+            case .displacementViewWidthIsEqualToSuperView(let equal):  displacementViewWidthIsEqualToSuperView = equal
+            case .displacementInsetMargin(let margin):                 displacementInsetMargin = margin
+            case .swipeToDismissMode(let mode):                        swipeToDismissMode = mode
+            case .toggleDecorationViewsBySingleTap(let enabled):       toggleDecorationViewBySingleTap = enabled
+            case .activityViewByLongPress(let enabled):                activityViewByLongPress = enabled
+            case .spinnerColor(let color):                             activityIndicatorView.color = color
+            case .spinnerStyle(let style):                             activityIndicatorView.style = style
 
             case .displacementTransitionStyle(let style):
 
@@ -456,8 +458,13 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
                 }
 
                 //position the image view to starting center
-                let convertedPoint = displacedView.convert(displacedView.boundsCenter, to: self.view)
-                animatedImageView.center = CGPoint(x: animatedImageView.bounds.size.width / 2, y: convertedPoint.y)
+                if displacementViewWidthIsEqualToSuperView {
+                    let convertedPoint = displacedView.convert(displacedView.boundsCenter, to: self.view)
+                    animatedImageView.center = CGPoint(x: animatedImageView.bounds.size.width / 2, y: convertedPoint.y)
+                }else{
+                    animatedImageView.center = displacedView.convert(displacedView.boundsCenter, to: self.view)
+                }
+
 
                 animatedImageView.clipsToBounds = true
                 self.view.addSubview(animatedImageView)
