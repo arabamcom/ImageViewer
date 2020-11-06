@@ -456,7 +456,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
                 }
 
                 //position the image view to starting center
-                animatedImageView.center = displacedView.convert(displacedView.boundsCenter, to: self.view)
+                animatedImageView.frame = displacedView.convert(displacedView.bounds, to: self.view)
 
                 animatedImageView.clipsToBounds = true
                 self.view.addSubview(animatedImageView)
@@ -550,7 +550,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
                     //position the image view to starting center
                     self?.itemView.bounds = displacedView.bounds
-                    self?.itemView.center = displacedView.convert(displacedView.boundsCenter, to: self!.view)
+                    self?.itemView.frame = displacedView.convert(displacedView.bounds, to: self!.view)
                     self?.itemView.clipsToBounds = true
                     self?.itemView.contentMode = displacedView.contentMode
 

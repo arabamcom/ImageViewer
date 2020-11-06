@@ -104,7 +104,7 @@ class ViewController: UIViewController {
 
             GalleryConfigurationItem.pagingMode(.standard),
             GalleryConfigurationItem.presentationStyle(.displacement),
-            GalleryConfigurationItem.dismissStyle(.fade),
+            GalleryConfigurationItem.dismissStyle(.displacement),
             GalleryConfigurationItem.hideDecorationViewsOnLaunch(false),
 
             GalleryConfigurationItem.swipeToDismissMode(.vertical),
