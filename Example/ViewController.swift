@@ -82,6 +82,8 @@ class ViewController: UIViewController {
         galleryViewController.launchedCompletion = { print("LAUNCHED") }
         galleryViewController.closedCompletion = { print("CLOSED") }
         galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED") }
+        galleryViewController.willCloseCompletion = { print("WILL-CLOSE") }
+        galleryViewController.willSwipedToDismissCompletion = { print("WILL-SWIPE-DISMISS") }
 
         galleryViewController.landedPageAtIndexCompletion = { index in
 

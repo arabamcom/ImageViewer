@@ -17,6 +17,7 @@ public protocol ItemControllerDelegate: class {
     func itemController(_ controller: ItemController, didSwipeToDismissWithDistanceToEdge distance: CGFloat)
 
     func itemControllerDidFinishSwipeToDismissSuccessfully()
+    func itemControllerWillSwipedToDismiss()
 
     func itemControllerDidSingleTap(_ controller: ItemController)
     func itemControllerDidLongPress(_ controller: ItemController, in item: ItemView)

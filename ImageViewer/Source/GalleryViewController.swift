@@ -65,7 +65,11 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     open var programmaticallyClosedCompletion: (() -> Void)?
     /// If set, launched after all animations finish when the swipe-to-dismiss (applies to all directions and cases) gesture is used.
     open var swipedToDismissCompletion:        (() -> Void)?
-
+    /// If set, launched before all animations finish when the close button is pressed.
+    open var willCloseCompletion:                 (() -> Void)?
+    /// If set, launched before all animations finish when the swipe-to-dismiss (applies to all directions and cases) gesture is used.
+    open var willSwipedToDismissCompletion:        (() -> Void)?
+    
     @available(*, unavailable)
     required public init?(coder: NSCoder) { fatalError() }
 
@@ -555,7 +559,9 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
         guard isAnimating == false else { return }
         isAnimating = true
-
+        
+        willCloseCompletion?()
+        
         if let itemController = self.viewControllers?.first as? ItemController {
 
             itemController.closeDecorationViews(decorationViewsFadeDuration)
@@ -704,6 +710,10 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
         self.overlayView.blurringView.alpha = 1 - distance
         self.overlayView.colorView.alpha = 1 - distance
+    }
+    
+    public func itemControllerWillSwipedToDismiss() {
+        self.willSwipedToDismissCompletion?()
     }
 
     public func itemControllerDidFinishSwipeToDismissSuccessfully() {

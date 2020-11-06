@@ -370,6 +370,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         /// Any item VERTICAL UP direction
         case (.vertical, _) where velocity.y < -thresholdVelocity:
 
+            delegate?.itemControllerWillSwipedToDismiss()
             swipeToDismissTransition?.finishInteractiveTransition(swipeOrientation,
                                                                   touchPoint: touchPoint.y,
                                                                   targetOffset: (view.bounds.height / 2) + (itemView.bounds.height / 2),
@@ -378,6 +379,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         /// Any item VERTICAL DOWN direction
         case (.vertical, _) where thresholdVelocity < velocity.y:
 
+            delegate?.itemControllerWillSwipedToDismiss()
             swipeToDismissTransition?.finishInteractiveTransition(swipeOrientation,
                                                                   touchPoint: touchPoint.y,
                                                                   targetOffset: -(view.bounds.height / 2) - (itemView.bounds.height / 2),
@@ -386,6 +388,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         /// First item HORIZONTAL RIGHT direction
         case (.horizontal, 0) where thresholdVelocity < velocity.x:
 
+            delegate?.itemControllerWillSwipedToDismiss()
             swipeToDismissTransition?.finishInteractiveTransition(swipeOrientation,
                                                                   touchPoint: touchPoint.x,
                                                                   targetOffset: -(view.bounds.width / 2) - (itemView.bounds.width / 2),
@@ -394,6 +397,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         /// Last item HORIZONTAL LEFT direction
         case (.horizontal, maxIndex) where velocity.x < -thresholdVelocity:
 
+            delegate?.itemControllerWillSwipedToDismiss()
             swipeToDismissTransition?.finishInteractiveTransition(swipeOrientation,
                                                                   touchPoint: touchPoint.x,
                                                                   targetOffset: (view.bounds.width / 2) + (itemView.bounds.width / 2),
